@@ -1,1 +1,14 @@
-/*Schrijf hier jouw eigen CSS!*/
+.main {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-philippine-yellow);
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttons {
+    align-self: center;
+}

@@ -1,0 +1,10 @@
+.pokemon-card {
+    border: solid var(--color-lapis-lazuli) 8px;
+    background-color: var(--color-philippine-yellow);
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+.no-bullets {
+    list-style-type: none;
+}

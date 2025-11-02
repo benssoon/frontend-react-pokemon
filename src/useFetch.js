@@ -1,9 +1,12 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 
+//////////////////////////////////////////
+// ONLY FOR TESTING, REMOVE WHEN FINISHED!
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+//////////////////////////////////////////
 
 function useFetch(url) {
     const [data, setData] = useState();

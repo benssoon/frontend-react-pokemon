@@ -2,21 +2,34 @@ import './App.css';
 import useFetch from './useFetch.js';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
+import Card from './Card/Card.jsx';
 
 const url = 'https://pokeapi.co/api/v2/pokemon/';
 
 function App() {
-    const { data, loading, error } = useFetch(url);
-
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    const { data: paginatedPokemon, loading, error } = useFetch(url);
 
     return (
       <>
-          <h1>Data</h1>
-          {loading ? <p>Loading</p> : <p>{data?.results[0].name}</p>}
-          {error && <p>{error}</p>}
+          {loading ?
+              <p>Loading</p> :
+              (error && <p>Error</p>) ||
+              <div className="main">
+                  <div className="buttons">
+                      <button>Vorige</button>
+                      <button>Volgende</button>
+                  </div>
+                  <ul className="results">
+                      {paginatedPokemon?.results.map((pokemon) => {
+                          return <li key={pokemon?.name} className="no-bullets">
+                              <Card
+                                  url={pokemon?.url}
+                              />
+                          </li>
+                      })}
+                  </ul>
+              </div>
+          }
       </>
     )
 }
