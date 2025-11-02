@@ -9,7 +9,7 @@ function delay(ms) {
 //////////////////////////////////////////
 
 function useFetch(url) {
-    const [data, setData] = useState();
+    const [data, setData] = useState(null);
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
 
@@ -29,6 +29,7 @@ function useFetch(url) {
             } catch (er) {
                 toggleError(true);
                 console.error(er);
+                console.error(url);
             }
             toggleLoading(false);
         }

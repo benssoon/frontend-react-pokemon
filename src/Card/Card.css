@@ -3,6 +3,10 @@
     background-color: var(--color-philippine-yellow);
     border-radius: 2rem;
     padding: 1rem;
+    min-width: 10rem;
+    max-width: 12rem;
+    min-height: 20rem;
+    max-height: 24rem;
 }
 
 .no-bullets {
