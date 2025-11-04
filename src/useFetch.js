@@ -4,12 +4,17 @@ import {useEffect, useState} from 'react';
 function useFetch(url) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+    const [error, setError] = useState(false);
+
+    function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
 
     useEffect(() => {
+        if(!url) return; // Do not fetch data if there is no url passed (i.e. for error/loading cards).
         const controller = new AbortController();
 
-        const fetchData = async () => {
+        async function fetchData() {
             setLoading(true);
             setError(false);
             try {
@@ -18,6 +23,7 @@ function useFetch(url) {
                         limit: 20,
                     }
                 });
+                await delay(2000);
                 setData(response.data);
             } catch (er) {
                 setError(er);
@@ -26,6 +32,7 @@ function useFetch(url) {
             }
             setLoading(false);
         }
+
         fetchData();
 
         return function cleanup() {

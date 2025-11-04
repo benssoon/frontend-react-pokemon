@@ -2,7 +2,6 @@ import './App.css';
 import useFetch from './useFetch.js';
 import {useEffect, useState} from 'react';
 import Card from './Card/Card.jsx';
-import Error from './Error/Error.jsx';
 
 const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -11,8 +10,23 @@ function App() {
     const [disabled, setDisabled] = useState({
         previous: null,
         next: null,
-    })
-    const { data: paginatedPokemon, loading, error } = useFetch(url);
+    });
+    const [cycle, setCycle] = useState('initializing');
+
+    useEffect(() => {
+        setCycle('mounting');
+    }, []);
+
+    useEffect(() => {
+        setCycle('updating url');
+
+        return function cleanup() {
+            setCycle('unmounting');
+        }
+    }, [url]);
+
+
+    const { data: paginatedPokemon, loading, error } = useFetch(url, cycle, 'first call');
 
     useEffect(() => {
         if (paginatedPokemon) {
@@ -34,14 +48,13 @@ function App() {
     return (
       <>
           <div className="main">
-              {loading || error ?
+              {loading || error || !paginatedPokemon ?
                   <div className="messages">
-                      <Card message={error.message || 'Loading'}/>
+                      <Card message={error?.response?.data || 'Loading'}/>
                   </div>
                   :
                   <>
                       <div className="buttons">
-                          {console.log("The buttons are here!")}
                           <button
                               disabled={disabled.previous}
                               type="button"
