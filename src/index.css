@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --color-lapis-lazuli: #3466AF;
+  --color-philippine-yellow: #FFCB05;
 }
 
 a {
@@ -27,6 +30,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  background-color: var(--color-philippine-yellow);
   min-width: 320px;
   min-height: 100vh;
 }

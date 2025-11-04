@@ -1,1 +1,25 @@
-/*Schrijf hier jouw eigen CSS!*/
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.buttons {
+    align-self: center;
+    display: flex;
+    gap: 1rem;
+}
