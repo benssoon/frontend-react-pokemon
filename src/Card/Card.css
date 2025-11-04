@@ -1,8 +1,20 @@
-.pokemon-card {
+.card {
     border: solid var(--color-lapis-lazuli) 8px;
     background-color: var(--color-philippine-yellow);
     border-radius: 2rem;
     padding: 1rem;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    aspect-ratio: 1/1;
+}
+
+.pokemon {
     min-width: 10rem;
     max-width: 12rem;
     min-height: 20rem;

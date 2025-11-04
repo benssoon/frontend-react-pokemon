@@ -1,7 +1,15 @@
 .main {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-philippine-yellow);
+    width: 100vw;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .results {

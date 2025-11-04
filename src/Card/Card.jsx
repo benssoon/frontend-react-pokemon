@@ -2,7 +2,7 @@ import './Card.css';
 import useFetch from '../useFetch.js';
 import {useEffect, useState} from 'react';
 
-function Card( {url, /*name, image, numMoves, weight, abilities*/} ) {
+function Card( {message, url, /*name, image, numMoves, weight, abilities*/} ) {
     const { data, loading, error } = useFetch(url);
     const [pokemon, setPokemon] = useState({
         name: '',
@@ -22,38 +22,47 @@ function Card( {url, /*name, image, numMoves, weight, abilities*/} ) {
                 abilities: data.abilities,
             });
         }
-        console.log(pokemon.weight);
     }, [data]);
 
     useEffect(() => {
         return function unmount() {
-            console.log("unmounted");
+
         }
     }, [data]);
 
     return (
-        <div className="pokemon-card">
-            {loading ?
-                <p>Loading</p> :
-                (error && <p>Error</p>) ||
-                <div>
-                    <h2>{pokemon.name}</h2>
-                    <img src={pokemon.image} alt={'An image of ' + pokemon.name}/>
-                    <p>Moves: {pokemon.moves}</p>
-                    <p>Weight: {pokemon.weight}</p>
-                    <p>Abilities:</p>
-                    <ul>
-                        {pokemon.abilities?.map((ability) => {
-                            return <li
-                                key={ability.ability.name}
-                                className="no-bullets"
-                            >{ability.ability.name}
-                            </li>
-                        })}
-                    </ul>
+        <>
+            {
+                message && <div className="message card">
+                    <p>{message}</p>
+                </div>
+
+                ||
+
+                <div className="pokemon card">
+                    {loading ?
+                        <p>Loading</p> :
+                        (error && <p>Error</p>) ||
+                        <div>
+                            <h2>{pokemon.name}</h2>
+                            <img src={pokemon.image} alt={'An image of ' + pokemon.name}/>
+                            <p>Moves: {pokemon.moves}</p>
+                            <p>Weight: {pokemon.weight}</p>
+                            <p>Abilities:</p>
+                            <ul>
+                                {pokemon.abilities?.map((ability, index) => {
+                                    return <li
+                                        key={index}
+                                        className="no-bullets"
+                                    >{ability.ability.name}
+                                    </li>
+                                })}
+                            </ul>
+                        </div>
+                    }
                 </div>
             }
-        </div>
+        </>
     )
 }
 
